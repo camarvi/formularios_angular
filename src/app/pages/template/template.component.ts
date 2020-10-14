@@ -9,8 +9,8 @@ import { NgForm } from '@angular/forms';
 export class TemplateComponent implements OnInit {
 
   usuario = {
-    nombre :'Kamarvi',
-    apellido : 'ManquitoGamer',
+    nombre :'kamarvi',
+    apellido : 'Gamer78',
     correo : 'manquitogamer@gmail.com'
   }
 
@@ -21,7 +21,17 @@ export class TemplateComponent implements OnInit {
 
   guardar( forma : NgForm){
 
-    console.log(forma);
+    //console.log(forma);
+
+    if (forma.invalid) {
+      // recorrer los elementos del formulario para que se dispare las validaciones
+      Object.values(forma.controls).forEach(control => {
+        control.markAsTouched(); //Lo pongo como pulsado
+      });
+
+      return;
+    }
+
     console.log(forma.value);
   }
 
