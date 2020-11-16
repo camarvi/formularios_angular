@@ -1,5 +1,13 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { resolve } from 'url';
+import { reject } from 'q';
+
+
+interface errorValidate {
+  [s:string]:boolean
+}
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +17,28 @@ export class ValidadoresService {
   constructor() { }
 
 
-noHerrera( control : FormControl) :{[s:string]:boolean} {
+  existeUsuario(control : FormControl): Promise<errorValidate> | Observable<errorValidate> {
+
+    if (!control.value){
+      return Promise.resolve( null );
+    }
+
+    return new Promise( (resolve, reject) =>{
+
+      setTimeout(() => {
+        if (control.value ==='paco'){
+          resolve({ existe:true });
+        } else {
+          resolve(null);
+        }
+      }, 3500);
+
+    });
+
+  }
+
+
+noHerrera(control : FormControl) :errorValidate {
 
   if (control.value.toLowerCase()==='herrera'){
     return {
