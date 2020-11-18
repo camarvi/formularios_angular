@@ -18,6 +18,7 @@ export class ReactiveComponent implements OnInit {
 
     this.crearFormulario();
     //this.cargarDataAlFormulario();
+    this.crearListeners();
 
   }
 
@@ -82,6 +83,12 @@ export class ReactiveComponent implements OnInit {
       validators : [this.validadores.passwordsIguales('pass1','pass2')]
     });
 
+  }
+
+  crearListeners(){
+    this.forma.valueChanges.subscribe( valor =>{
+      console.log(valor);
+    });
   }
 
   cargarDataAlFormulario(){
